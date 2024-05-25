@@ -137,24 +137,23 @@ source build/envsetup.sh
 brunch lancelot  # for build lancelot
 brunch merlinx   # for build merlinx
 ```
-...
-
+```
 . build/envsetup.sh
 lunch lineage_lancelot-user 
-...
+```
 variant compile 
 1
-...
+```
 brunch lancelot user
-...
+```
 2
-...
+```
 make bacon -j$(nproc --all)
-...
+```
 3
-...
+```
 mka bacon -j$(nproc --all)
-...
+```
 
 The build should begin.
 
