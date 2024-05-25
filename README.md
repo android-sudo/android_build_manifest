@@ -137,6 +137,8 @@ source build/envsetup.sh
 brunch lancelot  # for build lancelot
 brunch merlinx   # for build merlinx
 ```
+# PS
+
 ```
 . build/envsetup.sh
 lunch lineage_lancelot-user 
