@@ -100,7 +100,7 @@ Enter the following to initialize the repository:
 
 ```
 cd ~/android/crdroid
-repo init -u https://github.com/crdroidandroid/android.git -b 13.0 --git-lfs
+repo init --depth 1 -u https://github.com/crdroidandroid/android.git -b 13.0 --git-lfs
 ```
 
 ### Import device specific source manifest
@@ -137,6 +137,24 @@ source build/envsetup.sh
 brunch lancelot  # for build lancelot
 brunch merlinx   # for build merlinx
 ```
+...
+
+. build/envsetup.sh
+lunch lineage_lancelot-user 
+...
+variant compile 
+1
+...
+brunch lancelot user
+...
+2
+...
+make bacon -j$(nproc --all)
+...
+3
+...
+mka bacon -j$(nproc --all)
+...
 
 The build should begin.
 
