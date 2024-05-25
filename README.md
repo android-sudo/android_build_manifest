@@ -142,15 +142,16 @@ brunch merlinx   # for build merlinx
 lunch lineage_lancelot-user 
 ```
 variant compile 
-1
+
+# 1
 ```
 brunch lancelot user
 ```
-2
+# 2
 ```
 make bacon -j$(nproc --all)
 ```
-3
+# 3
 ```
 mka bacon -j$(nproc --all)
 ```
