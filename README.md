@@ -139,7 +139,7 @@ The source at DerpFest is well configured for building.
 ```
 **Prepare your device with:**
 ```bash
-lunch derp_$device-user
+lunch derp_lancelot-ap3a-userdebug
 ```
 **Then fire it off with:**
 ```bash
