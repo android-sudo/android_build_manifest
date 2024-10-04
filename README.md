@@ -27,9 +27,9 @@ You'll need to set up some directories in your build environment.
 
 To create them:
 
-```
+```bash
 mkdir -p ~/bin
-mkdir -p ~/android/crdroid
+mkdir -p ~/derp
 ```
 
 The `~/bin` directory will contain the git-repo tool (commonly named "repo") and the `~/android/crdroid` directory will contain the source code of CrDroid.
@@ -38,7 +38,7 @@ The `~/bin` directory will contain the git-repo tool (commonly named "repo") and
 
 Enter the following to download the `repo` binary and make it executable (runnable):
 
-```
+```bash
 curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
 chmod a+x ~/bin/repo
 ```
@@ -47,7 +47,7 @@ chmod a+x ~/bin/repo
 
 In recent versions of Ubuntu, `~/bin` should already be in your PATH. You can check this by opening `~/.profile` with a text editor and verifying the following code exists (add it if it is missing):
 
-```
+```bash
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
@@ -59,7 +59,7 @@ Then, run `source ~/.profile` to update your environment.
 
 ### Configure git
 Given that `repo` requires you to identify yourself to sync Android, run the following commands to configure your `git` identity:
-```
+```bash
 git config --global user.email "you@example.com"
 git config --global user.name "Your Name"
 ```
@@ -69,14 +69,14 @@ git config --global user.name "Your Name"
 
 Make use of [`ccache`](https://ccache.samba.org/) if you want to speed up subsequent builds by running:
 
-```
+```bash
 export USE_CCACHE=1
 export CCACHE_EXEC=/usr/bin/ccache
 ```
 
 and adding that line to your `~/.bashrc` file. Then, specify the maximum amount of disk space you want `ccache` to use by typing this:
 
-```
+```bash
 ccache -M 50G
 ```
 
@@ -87,7 +87,7 @@ into consideration.
 
 You can also enable the optional `ccache` compression. While this may involve a slight performance slowdown, it increases the number of files that fit in the cache. To enable it, run:
 
-```
+```bash
 ccache -o compression=true
 ```
 
@@ -98,25 +98,25 @@ If compression is enabled, the `ccache` size can be lower (aim for approximately
 
 Enter the following to initialize the repository:
 
-```
-cd ~/android/crdroid
-repo init -u https://github.com/crdroidandroid/android.git -b 13.0 --git-lfs
+```bash
+cd ~/derp
+repo init -u https://github.com/DerpFest-AOSP/manifest.git -b 15 --depth=1
 ```
 
 ### Import device specific source manifest
 
 Enter the following to import device specific source manifest:
 
-```
-git clone https://github.com/MT6768-Lab/local_manifest --depth 1 -b crdroid-13.0 .repo/local_manifests
+```bash
+git clone https://github.com/android-sudo/android_build_manifest.git --depth=1 -b derp-15 .repo/local_manifests
 ```
 
 ### Download the source code
 
 To start the download of the source code to your computer, type the following:
 
-```
-repo sync
+```bash
+repo sync -c --force-sync --optimized-fetch --no-tags --no-clone-bundle --prune -j$(nproc --all)
 ```
 
 The CrDroid manifests include a sensible default configuration for repo, which we strongly suggest you use (i.e. don't add any options to sync).
@@ -128,25 +128,64 @@ The `repo sync` command is used to update the latest source code from CrDroid an
 do it every few days to keep your code base fresh and up-to-date. But note, if you make any changes, running `repo sync` may wipe them away!
 
 
-### Start the build
+Building the source
+---------------
 
-Time to start building! Now, type:
+The source at DerpFest is well configured for building.
 
+**Initiate the build with:**
+```bash
+. build/envsetup.sh
 ```
-source build/envsetup.sh
-brunch lancelot  # for build lancelot
-brunch merlinx   # for build merlinx
+**Prepare your device with:**
+```bash
+lunch derp_$device-user
+```
+**Then fire it off with:**
+```bash
+mka derp
 ```
 
-The build should begin.
-
+Thanks section
+---------------
 Assuming the build completed without errors (it will be obvious when it finishes), type the following in the terminal window the build ran in:
 
-```
+```bash
 cd $OUT
 ```
 
-There you'll find all the files that were created. 
+Here's my thanks to people who made this possible:
 
-`crDroidAndroid-13.0-20230608-lancelot-v9.5.zip` or `crDroidAndroid-13.0-20230608-merlinx-v9.5.zip`, which is the CrDroid
-installer package.
+* ABC
+* AICP
+* AOSiP
+* AOSPA
+* ArrowOS
+* Bianca Project
+* BootleggersROM
+* CyanogenMod/LineageOS
+* DirtyUnicorns
+* NitrogenOS
+* Nusantara-ROM
+* OmniROM
+* PixelExperience
+* POSP
+* Project Fluid
+* Project Kaleidoscope
+* RiceDroid
+* ShapeShiftOS
+* Syberia Project
+* YAAP
+
+Using our assets
+---------------
+
+**Code**
+
+Our codebase is licensed under Apache License, Version 2.0 unless otherwise specified. Apache License 2.0 allows a variety of actions on the content as long as licensing and copyright notices are retained and included with the code and your changes to the codebase are stated.
+
+You can read the full license text at http://www.apache.org/licenses/LICENSE-2.0
+
+**Images & other assets**
+
+Unless otherwise specified, all out assets, including but not limited to images, are licensed under Creative Commons Attribution-NonCommercial 4.0 International, or CC BY-NC 4.0 for short. This means that you are allowed to modify the aforementioned assets in any way you want and you are free to share the originals and/or the modified work. However, you are not allowed to use the assets for commercial purposes and you must provide attribution at all times which means you have to include a short note about the license used (CC BY-NC 4.0), the original author/authors (DerpFest) and inform about any changes that have been made. A link to the website ( derpfest.org ) should usually be included as well.
