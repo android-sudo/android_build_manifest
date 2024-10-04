@@ -105,6 +105,12 @@ repo init -u https://github.com/crdroidandroid/android.git -b 13.0 --git-lfs
 
 ### Import device specific source manifest
 
+## How to use it/clone
+
+```bash
+git clone https://github.com/android-sudo/android_build_manifest.git -b lineageOS-22 .repo/local_manifests
+```
+
 Enter the following to import device specific source manifest:
 
 ```
