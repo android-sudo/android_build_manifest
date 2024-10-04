@@ -1,4 +1,4 @@
-## Build CrDroid
+## Build DerpFest
 
 ### Install the build packages
 
