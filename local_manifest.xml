@@ -31,7 +31,7 @@
   <project path="hardware/mediatek" name="LineageOS/android_hardware_mediatek" remote="hub" revision="lineage-21"  />
 
   <!-- Sepolicy Tree -->
-  <project path="device/mediatek/sepolicy_vndr" name="LineageOS/android_device_mediatek_sepolicy_vndr" remote="hub" revision="lineage-21"  />
+  <project path="device/mediatek/sepolicy_vndr" name="android_device_mediatek_sepolicy_vndr.git" remote="global" revision="derp"  />
  <!-- Updater -->
  <!--<remove-project name="LineageOS/android_packages_apps_Updater"/>
  <project path="packages/apps/Updater" name="android_packages_apps_Updater" remote="andexzu" revision="lineage-21.0"/>-->
